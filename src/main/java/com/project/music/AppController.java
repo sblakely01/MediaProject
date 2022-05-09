@@ -1,0 +1,20 @@
+package com.project.music;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequiredArgsConstructor
+public class AppController {
+	@RequestMapping({"/"})
+	public String loadUI() {
+		//log.info("loading UIssdd");
+		return "forward: /index.html";
+	}
+}
