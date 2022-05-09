@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import MediaList from './MediaList';
+import { createFetch, base, parse } from 'http-client'
+
+
+const React = require('react');
+const ReactDOM = require('react-dom');
+
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {medias: []};
+  }
+
+  componentDidMount() {
+    const fetch = createFetch(base('/api/'), parse('json'))
+    
+    fetch('/medias').then(response => {
+      this.setState({medias: response.entity._embedded.medias});
+    
+    });
+  }
+  render() {
+    return (
+      <div>
+      {//<MediaList mediaList={this.state.medias}/>
+      }
+      {console.log(this.state.medias)}
+      </div>
+
+    )
+  }
 }
 
 export default App;
